@@ -19,9 +19,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // primeNG
 import { DropdownModule } from 'primeng/dropdown';
+import { NavbarComponent } from './components/nav/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PostComponent, PostListComponent],
+  declarations: [AppComponent, HomeComponent, PostComponent, PostListComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
