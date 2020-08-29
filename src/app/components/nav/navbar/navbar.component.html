@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-  <a class="navbar-brand" href="#">{{ title }}</a>
+  <a class="navbar-brand" [routerLink]="['/']">{{ title }}</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -15,7 +15,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"
+        <a class="nav-link" [routerLink]="['/']"
           >Inicio <span class="sr-only">(current)</span></a
         >
       </li>
@@ -43,11 +43,11 @@
         <a class="nav-link" href="#">Foro</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/noticias">Noticias</a>
+        <a class="nav-link" [routerLink]="['/noticias']">Noticias</a>
       </li>
     </ul>
 
-    <ul class="navbar-nav ml-md-auto">
+    <ul *ngIf="authService.isLogged | async" class="navbar-nav ml-md-auto">
       <li class="nav-item dropdown">
         <a
           class="nav-item nav-link dropdown-toggle mr-md-2"
@@ -84,7 +84,7 @@
             >Mi cuenta</a
           >
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"
+          <a class="dropdown-item" (click)="onLogout()"
             ><svg
               width="1em"
               height="1em"
@@ -103,6 +103,9 @@
         </div>
       </li>
     </ul>
-    <a class="btn btn-outline-warning" href="#">Iniciar Sesion</a>
+
+    <a class="btn btn-outline-warning" [routerLink]="['/login']"
+      >Iniciar Sesion</a
+    >
   </div>
 </nav>

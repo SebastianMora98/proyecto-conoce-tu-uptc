@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataWpService } from '../../../services/posts/data-wp.service';
-import { PostInterface } from '../../../domain/post/post.interface';
+import { DataWpService } from '@services/posts/data-wp.service';
+import { PostInterface } from '@domain/post/post.interface';
 import { Observable } from 'rxjs';
 
 @Component({

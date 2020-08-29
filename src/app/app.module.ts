@@ -17,6 +17,7 @@ import { NavbarComponent } from './components/nav/navbar/navbar.component';
 
 // forms
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // primeNG
@@ -26,6 +27,7 @@ import { ButtonModule } from 'primeng/button';
 import { EditorModule } from 'primeng/editor';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,14 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     PostListComponent,
     NavbarComponent,
     AddPostComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     DropdownModule,
     ButtonModule,
