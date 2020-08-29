@@ -1,1 +1,11 @@
-<p>post-list works!</p>
+<div class="container pt-5">
+  <app-add-post></app-add-post>
+</div>
+
+<div class="container pt-5">
+  <div class="card-columns">
+    <div class="card" *ngFor="let post of posts$ | async">
+      <app-post [post]="post"></app-post>
+    </div>
+  </div>
+</div>

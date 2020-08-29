@@ -7,10 +7,8 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Conoce Tu UPTC';
-
   constructor(private primengConfig: PrimeNGConfig) {}
-
+  title = 'hola mundo';
   ngOnInit() {
     this.primengConfig.ripple = true;
   }
