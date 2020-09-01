@@ -14,6 +14,7 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
+  private userName: string;
   constructor(private http: HttpClient) {
     this.checkToken();
   }
