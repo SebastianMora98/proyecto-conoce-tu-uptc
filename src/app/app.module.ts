@@ -12,8 +12,8 @@ import { AppComponent } from './app.component';
 import { PostComponent } from './components/posts/post/post.component';
 import { PostListComponent } from './components/posts/post-list/post-list.component';
 import { AddPostComponent } from './components/posts/add-post/add-post.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 // forms
 import { FormsModule } from '@angular/forms';
