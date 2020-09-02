@@ -10,9 +10,21 @@ export class DataWpService {
   urlApi = 'http://localhost/ctu-primeNG/admin/wp-json/wp/v2/posts?_embed';
   constructor(private http: HttpClient) {}
   getPosts(): Observable<PostInterface[]> {
+    return this.http.get<PostInterface[]>(this.urlApi);
+  }
+  /*getPostsPerPage(page: string): Observable<PostInterface[]> {
     return this.http.get<PostInterface[]>(this.urlApi, {
       params: {
-        per_page: '9',
+        per_page: '3',
+        page: page,
+      },
+    });
+  }*/
+  getPostsPerPage(per_page: string, page: string): Observable<PostInterface[]> {
+    return this.http.get<PostInterface[]>(this.urlApi, {
+      params: {
+        per_page: per_page,
+        page: page,
       },
     });
   }

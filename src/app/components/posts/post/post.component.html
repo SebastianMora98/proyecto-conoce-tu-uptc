@@ -1,4 +1,4 @@
-<img
+<!--<img
   [src]="
     post['_embedded']['wp:featuredmedia'][0]['media_details'].sizes['full']
       .source_url
@@ -15,4 +15,41 @@
 </div>
 <div class="card-footer">
   <small class="text-muted">{{ post.date_gmt | date }}</small>
+</div>
+-->
+
+<div class="entry2">
+  <a href="single.html"
+    ><img
+      [src]="
+        post['_embedded']['wp:featuredmedia'][0]['media_details'].sizes['full']
+          .source_url
+      "
+      alt="Image"
+      style="object-fit: cover"
+      class="img-fluid rounded"
+  /></a>
+  <div class="excerpt">
+    <span class="post-category text-white bg-success mb-3">{{
+      post["_embedded"]["wp:term"][0][0]["name"]
+    }}</span>
+    <h2>
+      <a>{{ post.title.rendered }}</a>
+    </h2>
+    <div class="post-meta align-items-center text-left clearfix">
+      <figure class="author-figure mb-0 mr-3 float-left">
+        <img
+          [src]="post['_embedded']['author'][0]['avatar_urls']['48']"
+          alt="Image"
+          class="img-fluid"
+        />
+      </figure>
+      <span class="d-inline-block mt-1"
+        >By <a href="#">{{ post["_embedded"]["author"][0].name }}</a></span
+      >
+      <span>&nbsp;-&nbsp; {{ post.date_gmt | date }}</span>
+    </div>
+    <p [innerHTML]="post.excerpt.rendered"></p>
+    <p><a [href]="post.link">Leer mas</a></p>
+  </div>
 </div>

@@ -31,6 +31,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ToastModule } from 'primeng/toast';
     PasswordModule,
     RippleModule,
     ToastModule,
+    PaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
