@@ -21,12 +21,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // primeNG
-import { DropdownModule } from 'primeng/dropdown';
+import { RippleModule } from 'primeng/ripple';
 
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { EditorModule } from 'primeng/editor';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { PasswordModule } from 'primeng/password';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -45,10 +49,14 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     DropdownModule,
+    InputTextModule,
     ButtonModule,
     EditorModule,
     FileUploadModule,
     InputTextareaModule,
+    PasswordModule,
+    RippleModule,
+    ToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

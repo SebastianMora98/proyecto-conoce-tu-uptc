@@ -1,52 +1,65 @@
-<div class="text-center pt-5">
+<p-toast></p-toast>
+<div>
   <form [formGroup]="loginForm" class="form-signin" (ngSubmit)="onLogin()">
-    <!--   <img
-      class="mb-4"
-      src="/docs/4.5/assets/brand/bootstrap-solid.svg"
+    <h1 class="h3 pt-5 font-weight-normal" style="text-align: center">
+      INICIAR SESIÓN
+    </h1>
+    <img
+      src="/assets/img/logo.jpg"
       alt=""
-      width="72"
-      height="72"
-    /> -->
+      width="150"
+      height="150"
+      style="display: block; margin: auto"
+      [routerLink]="['/']"
+    />
 
-    <h1 class="h3 mb-3 font-weight-normal">INICIAR SESIÓN</h1>
-    <label for="inputEmail" class="sr-only">Correo</label>
-
+    <h5>Correo</h5>
     <input
+      id="float-input"
       formControlName="username"
       type="text"
-      class="form-control"
-      placeholder="Correo"
-      required
-      autofocus="true"
-      [ngClass]="{ 'is-invalid': isValidField('username') }"
+      style="width: 100%"
+      pInputText
+      [ngClass]="{ 'p-invalid': isValidField('username') }"
     />
-    <div class="invalid-feedback" *ngIf="isValidField('username')">
-      {{ getErrorMessage("username") }}
-    </div>
+    <small
+      *ngIf="isValidField('username')"
+      id="username2-help"
+      class="p-invalid"
+    >
+      {{ getErrorMessage("username") }}</small
+    >
 
-    <label for="inputPassword" class="sr-only">Contraseña</label>
+    <h5>Password</h5>
     <input
+      pPassword
       formControlName="password"
       type="password"
-      class="form-control"
-      placeholder="Contraseña"
-      required
-      [ngClass]="{ 'is-invalid': isValidField('password') }"
+      [feedback]="false"
+      style="width: 100%"
+      [ngClass]="{ 'p-invalid': isValidField('password') }"
     />
-    <div class="invalid-feedback">
-      {{ getErrorMessage("password") }}
-    </div>
+    <small
+      *ngIf="isValidField('password')"
+      id="username2-help"
+      class="p-invalid"
+    >
+      {{ getErrorMessage("password") }}</small
+    >
 
     <div class="checkbox mb-3">
-      <label> <input type="checkbox" value="remember-me" /> Recurdame </label>
+      <label> <input type="checkbox" value="remember-me" /> Recuerdame </label>
     </div>
+
     <button
-      class="btn btn-lg btn-primary btn-block"
+      pButton
+      pRipple
       [disabled]="loginForm.invalid"
+      style="width: 100%"
       type="submit"
-    >
-      Iniciar Sesion
-    </button>
-    <p class="mt-5 mb-3 text-muted">© 2020</p>
+      label="Iniciar Sesion"
+      class="p-button-outlined p-button-secondary"
+    ></button>
+    <p style="text-align: center" class="mt-5 mb-3 text-muted">© 2020</p>
   </form>
 </div>

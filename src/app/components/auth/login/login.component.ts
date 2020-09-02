@@ -4,10 +4,14 @@ import { AuthService } from '@services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+import { PrimeNGConfig } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  providers: [MessageService],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private isValidEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
@@ -24,21 +28,34 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private primengConfig: PrimeNGConfig,
+    private messageService: MessageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
+  }
   ngOnDestroy(): void {
     this.subcription.unsubscribe();
   }
   onLogin(): void {
     const formValue = this.loginForm.value;
     this.subcription.add(
-      this.authService.login(formValue).subscribe((res) => {
-        if (res) {
-          this.router.navigate(['/home']);
+      this.authService.login(formValue).subscribe(
+        (res) => {
+          if (res) {
+            this.router.navigate(['/home']);
+          }
+        },
+        (err) => {
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Usuario o contraseña incorrectos',
+            detail: 'Verifique que los datos ingresados son correctos',
+          });
         }
-      })
+      )
     );
   }
   getErrorMessage(field: string): string {

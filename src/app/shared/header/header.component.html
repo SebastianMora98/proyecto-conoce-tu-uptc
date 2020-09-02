@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+<nav
+  *ngIf="router.url !== '/login'"
+  class="navbar navbar-expand-lg navbar-light bg-white shadow-sm"
+>
   <!-- solo se muestra este boton si esta en la ruta home -->
   <div *ngIf="router.url === '/home'">
     <button
