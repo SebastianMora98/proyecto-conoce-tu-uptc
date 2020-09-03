@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.primengConfig.ripple = true;
   }
   ngOnDestroy(): void {
+    console.log("destroy login :'v");
     this.subcription.unsubscribe();
   }
   onLogin(): void {

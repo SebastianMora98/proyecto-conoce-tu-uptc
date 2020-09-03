@@ -1,24 +1,23 @@
-<div class="container pt-5">
+<div *ngIf="false" class="container pt-5">
   <app-add-post></app-add-post>
 </div>
 
-<div class="site-section">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2>Noticias recientes</h2>
-      </div>
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-12 pt-5">
+      <h2>Noticias recientes</h2>
     </div>
-    <div class="row">
-      <div class="col-lg-4 col-sm-6 mb-4" *ngFor="let post of posts$ | async">
-        <app-post [post]="post"></app-post>
-      </div>
-    </div>
-    <p-paginator
-      [rows]="this.per_page"
-      [rowsPerPageOptions]="[2, 4, 6]"
-      [totalRecords]="this.numPosts$"
-      (onPageChange)="paginate($event)"
-    ></p-paginator>
   </div>
+  <div *ngIf="posts" class="row">
+    <div class="col-lg-4 col-sm-6 mb-4" *ngFor="let post of posts">
+      <app-post [post]="post"></app-post>
+    </div>
+  </div>
+  <p-paginator
+    *ngIf="numPosts !== 0"
+    [rows]="this.per_page"
+    [rowsPerPageOptions]="[2, 4, 6]"
+    [totalRecords]="this.numPosts"
+    (onPageChange)="paginate($event)"
+  ></p-paginator>
 </div>

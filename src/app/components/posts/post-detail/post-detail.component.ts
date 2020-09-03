@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataWpService } from '@services/posts/data-wp.service';
 import { PostInterface, EmbeddedWpTerm } from '@domain/post/post.interface';
 import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -13,8 +14,9 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.css'],
 })
-export class PostDetailComponent implements OnInit {
-  @Input() id: string;
+export class PostDetailComponent implements OnInit, OnDestroy {
+  private subcription: Subscription = new Subscription();
+
   post: PostInterface;
   last3post: PostInterface[];
   content: any;
@@ -25,18 +27,27 @@ export class PostDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.getPost(params.id);
-    });
+    this.subcription.add(
+      this.route.params.subscribe((params) => {
+        this.getPost(params.id);
+      })
+    );
+  }
+  ngOnDestroy(): void {
+    this.subcription.unsubscribe();
   }
 
   getPost(id: string): void {
-    this.dataWpService.getPostById(id).subscribe((res) => {
-      this.post = res;
-    });
+    this.subcription.add(
+      this.dataWpService.getPostById(id).subscribe((res) => {
+        this.post = res;
+      })
+    );
 
-    this.dataWpService.getPostsPerPage('3', '1').subscribe((res) => {
-      this.last3post = res;
-    });
+    this.subcription.add(
+      this.dataWpService.getPostsPerPage('3', '1').subscribe((res) => {
+        this.last3post = res;
+      })
+    );
   }
 }
