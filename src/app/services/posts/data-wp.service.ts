@@ -12,6 +12,12 @@ export class DataWpService {
   getPosts(): Observable<PostInterface[]> {
     return this.http.get<PostInterface[]>(this.urlApi);
   }
+
+  getPostById(id: string): Observable<PostInterface> {
+    return this.http.get<any>(
+      `http://localhost/ctu-primeNG/admin/wp-json/wp/v2/posts/${id}/?_embed`
+    );
+  }
   /*getPostsPerPage(page: string): Observable<PostInterface[]> {
     return this.http.get<PostInterface[]>(this.urlApi, {
       params: {

@@ -32,6 +32,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { PaginatorModule } from 'primeng/paginator';
+import { PostDetailComponent } from './components/posts/post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PaginatorModule } from 'primeng/paginator';
     HeaderComponent,
     AddPostComponent,
     LoginComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,

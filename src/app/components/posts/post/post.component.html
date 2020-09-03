@@ -50,6 +50,6 @@
       <span>&nbsp;-&nbsp; {{ post.date_gmt | date }}</span>
     </div>
     <p [innerHTML]="post.excerpt.rendered"></p>
-    <p><a [href]="post.link">Leer mas</a></p>
+    <p><a routerLink="detalle/{{ post.id }}">Leer mas</a></p>
   </div>
 </div>

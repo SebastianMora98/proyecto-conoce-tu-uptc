@@ -1,0 +1,106 @@
+<!--<img
+  *ngIf="post$"
+  [src]="
+    post$['_embedded']['wp:featuredmedia'][0]['media_details'].sizes['full']
+      .source_url
+  "
+  alt="Image"
+  style="object-fit: cover"
+  class="mb-5 img-fluid rounded"
+/>
+
+<div *ngIf="post$" class="post-meta align-items-center text-left clearfix">
+  <figure class="author-figure mb-0 mr-3 float-left">
+    <img
+      [src]="post$['_embedded']['author'][0]['avatar_urls']['48']"
+      alt="Image"
+      class="img-fluid"
+    />
+  </figure>
+  <span class="d-inline-block mt-1"
+    >By <a href="#">{{ post$["_embedded"]["author"][0].name }}</a></span
+  >
+  <span>&nbsp;-&nbsp; {{ post$.date_gmt | date }}</span>
+</div>-->
+<section *ngIf="post" class="site-section py-lg">
+  <div class="container">
+    <div class="row blog-entries">
+      <div class="col-md-12 col-lg-8 main-content">
+        <img
+          [src]="
+            post._embedded['wp:featuredmedia'][0].media_details.sizes.full
+              .source_url
+          "
+          alt="Image"
+          class="img-fluid mb-5"
+        />
+        <div class="post-meta">
+          <span class="author mr-2"
+            ><img
+              [src]="post._embedded.author[0].avatar_urls['48']"
+              alt="Colorlib"
+              class="mr-2"
+            />
+            {{ post._embedded.author[0].name }}</span
+          >• <span class="mr-2">{{ post.date_gmt | date }} </span>
+        </div>
+        <h1 class="mb-4">{{ post.title.rendered }}</h1>
+        <div
+          class="post-content-body"
+          [innerHTML]="post.content.rendered"
+        ></div>
+        <div class="pt-5">
+          <p>
+            Categories:
+            <a *ngFor="let category of post._embedded['wp:term'][0]">
+              &nbsp; {{ category.name }}</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-4 sidebar">
+        <div class="sidebar-box">
+          <h3 class="heading">Ultimas noticias</h3>
+          <div class="post-entry-sidebar">
+            <ul>
+              <li *ngFor="let post of last3post">
+                <a routerLink="/noticias/detalle/{{ post.id }}">
+                  <img
+                    [src]="
+                      post._embedded['wp:featuredmedia'][0].media_details.sizes
+                        .full.source_url
+                    "
+                    alt="Image placeholder"
+                    class="mr-4"
+                  />
+                  <div class="text">
+                    <h4>
+                      {{ post.title.rendered }}
+                    </h4>
+                    <div class="post-meta">
+                      <span class="mr-2">{{ post.date_gmt | date }} </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar-box">
+          <h3 class="heading">Categories</h3>
+
+          <ul
+            class="categories"
+            *ngFor="let category of post._embedded['wp:term'][0]"
+          >
+            <li>
+              <a>{{ category.name }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
