@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PostInterface } from '../../domain/post/post.interface';
+import { PostInterface } from '@interfaces/wp_interfaces/post/post.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -33,5 +33,11 @@ export class DataWpService {
         page: page,
       },
     });
+  }
+
+  getCategories(): Observable<PostInterface[]> {
+    return this.http.get<PostInterface[]>(
+      'http://localhost/ctu-primeNG/admin/wp-json/wp/v2/categories?orderby=id'
+    );
   }
 }

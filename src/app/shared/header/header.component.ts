@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit, OnDestroy {
   title = 'Conoce Tu UPTC';
   isLogged = false;
+  username: string;
 
   private subscription: Subscription = new Subscription();
 
@@ -25,6 +26,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.authService.isLogged.subscribe((res) => (this.isLogged = res))
     );
+    this.subscription.add(
+      this.authService.userName.subscribe((user) => (this.username = user))
+    );
   }
 
   ngOnDestroy(): void {
@@ -32,5 +36,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   onLogout() {
     this.authService.logout();
+    window.location.href = 'http://localhost/ctu-primeNG/admin/logout/';
   }
 }

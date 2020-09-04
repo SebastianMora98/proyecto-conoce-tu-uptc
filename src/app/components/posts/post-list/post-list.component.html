@@ -1,6 +1,6 @@
-<div *ngIf="false" class="container pt-5">
+<!--<div *ngIf="false" class="container pt-5">
   <app-add-post></app-add-post>
-</div>
+</div>-->
 
 <div class="container">
   <div class="row mb-5">
@@ -14,7 +14,7 @@
     </div>
   </div>
   <p-paginator
-    *ngIf="numPosts !== 0"
+    *ngIf="numPosts !== 0 && posts"
     [rows]="this.per_page"
     [rowsPerPageOptions]="[2, 4, 6]"
     [totalRecords]="this.numPosts"

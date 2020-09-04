@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 
 import { environment } from '@env/environment';
-import { UserResponse, User } from '@domain/auth/user.interface';
+import { UserResponse, User } from '@interfaces/auth/user.interface';
 import { catchError, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -14,13 +14,17 @@ const helper = new JwtHelperService();
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  private userName: string;
+  private userNiceName = new BehaviorSubject<string>('');
   constructor(private http: HttpClient) {
     this.checkToken();
   }
 
   get isLogged(): Observable<boolean> {
     return this.loggedIn.asObservable();
+  }
+
+  get userName(): Observable<string> {
+    return this.userNiceName.asObservable();
   }
 
   login(authData: User): Observable<UserResponse | void> {
@@ -33,6 +37,7 @@ export class AuthService {
         map((res: UserResponse) => {
           this.saveToken(res.token);
           this.loggedIn.next(true);
+          this.userNiceName.next(res.user_nicename);
           return res;
         }),
         catchError((err) => this.handleError(err))

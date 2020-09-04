@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataWpService } from '@services/posts/data-wp.service';
-import { PostInterface } from '@domain/post/post.interface';
+import { PostInterface } from '@interfaces/wp_interfaces/post/post.interface';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
 @Component({

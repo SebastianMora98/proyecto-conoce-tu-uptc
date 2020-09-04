@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       [Validators.required, Validators.pattern(this.isValidEmail)],
     ],
     password: ['', [Validators.required, Validators.minLength(5)]],
+    rememberMe: [''],
   });
 
   constructor(
@@ -35,13 +36,27 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+    this.isRememberMeStorage();
   }
   ngOnDestroy(): void {
-    console.log("destroy login :'v");
     this.subcription.unsubscribe();
   }
   onLogin(): void {
-    const formValue = this.loginForm.value;
+    if (this.loginForm.value.rememberMe) {
+      localStorage.setItem('username', this.loginForm.value.username);
+      localStorage.setItem(
+        'RememberMe',
+        JSON.stringify(this.loginForm.value.rememberMe)
+      );
+    } else {
+      localStorage.removeItem('username');
+      localStorage.removeItem('rememberMe');
+    }
+
+    const formValue = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password,
+    };
     this.subcription.add(
       this.authService.login(formValue).subscribe(
         (res) => {
@@ -77,5 +92,16 @@ export class LoginComponent implements OnInit, OnDestroy {
       (this.loginForm.get(field).touched || this.loginForm.get(field).dirty) &&
       !this.loginForm.get(field).valid
     );
+  }
+
+  isRememberMeStorage() {
+    if (localStorage.getItem('RememberMe') == 'true') {
+      this.loginForm.controls['username'].setValue(
+        localStorage.getItem('username')
+      );
+      this.loginForm.controls['rememberMe'].setValue(true);
+    } else {
+      this.loginForm.controls['rememberMe'].setValue(false);
+    }
   }
 }
