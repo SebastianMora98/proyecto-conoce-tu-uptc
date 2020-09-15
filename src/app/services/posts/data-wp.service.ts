@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DataWpService {
-  urlApi = 'http://localhost/ctu-primeNG/admin/wp-json/wp/v2/posts?_embed';
+  urlApi = 'http://localhost/ConoceTuUPTC/admin/wp-json/wp/v2/posts?_embed';
   constructor(private http: HttpClient) {}
   getPosts(): Observable<PostInterface[]> {
     return this.http.get<PostInterface[]>(this.urlApi);
@@ -15,7 +15,7 @@ export class DataWpService {
 
   getPostById(id: string): Observable<PostInterface> {
     return this.http.get<any>(
-      `http://localhost/ctu-primeNG/admin/wp-json/wp/v2/posts/${id}/?_embed`
+      `http://localhost/ConoceTuUPTC/admin/wp-json/wp/v2/posts/${id}/?_embed`
     );
   }
   /*getPostsPerPage(page: string): Observable<PostInterface[]> {
@@ -37,7 +37,7 @@ export class DataWpService {
 
   getCategories(): Observable<PostInterface[]> {
     return this.http.get<PostInterface[]>(
-      'http://localhost/ctu-primeNG/admin/wp-json/wp/v2/categories?orderby=id'
+      'http://localhost/ConoceTuUPTC/admin/wp-json/wp/v2/categories?orderby=id'
     );
   }
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://localhost/ctu-primeNG',
+  API_URL: 'http://localhost/ConoceTuUPTC',
 };
 
 /*

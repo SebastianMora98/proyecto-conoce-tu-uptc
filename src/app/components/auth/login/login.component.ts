@@ -1,5 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '@services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -16,23 +21,37 @@ import { MessageService } from 'primeng/api';
 export class LoginComponent implements OnInit, OnDestroy {
   private isValidEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   private subcription: Subscription = new Subscription();
+  private isLogged: boolean = false;
 
-  loginForm = this.formBuilder.group({
-    username: [
-      '',
-      [Validators.required, Validators.pattern(this.isValidEmail)],
-    ],
-    password: ['', [Validators.required, Validators.minLength(5)]],
-    rememberMe: [''],
-  });
+  loginForm: FormGroup;
+
+  emailCtrl: FormControl;
+  passwordCtrl: FormControl;
+  rememberMeCtrl: FormControl;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
     private primengConfig: PrimeNGConfig,
     private messageService: MessageService
-  ) {}
+  ) {
+    this.emailCtrl = new FormControl(null, [
+      Validators.required,
+      Validators.pattern(this.isValidEmail),
+    ]);
+    this.passwordCtrl = new FormControl(null, [
+      Validators.required,
+      Validators.minLength(5),
+    ]);
+    this.rememberMeCtrl = new FormControl(false);
+
+    this.loginForm = this.formBuilder.group({
+      username: this.emailCtrl,
+      password: this.passwordCtrl,
+      rememberMe: this.rememberMeCtrl,
+    });
+  }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
@@ -42,6 +61,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subcription.unsubscribe();
   }
   onLogin(): void {
+    this.isLogged = false;
     if (this.loginForm.value.rememberMe) {
       localStorage.setItem('username', this.loginForm.value.username);
       localStorage.setItem(
@@ -61,10 +81,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService.login(formValue).subscribe(
         (res) => {
           if (res) {
+            this.isLogged = true;
             this.router.navigate(['/home']);
           }
         },
         (err) => {
+          this.isLogged = false;
           this.messageService.add({
             severity: 'warn',
             summary: 'Usuario o contraseña incorrectos',
