@@ -1,8 +1,12 @@
 <p-toast></p-toast>
 <div>
-  <form [formGroup]="loginForm" class="form-signin" (ngSubmit)="onLogin()">
+  <form
+    [formGroup]="registerForm"
+    class="form-signup"
+    (ngSubmit)="onRegister()"
+  >
     <h1 class="h3 pt-5 font-weight-normal" style="text-align: center">
-      INICIAR SESIÓN
+      REGISTRO
     </h1>
     <img
       src="/assets/img/logo.jpg"
@@ -12,14 +16,14 @@
       style="display: block; margin: auto"
       [routerLink]="['/']"
     />
-
-    <h5>Correo</h5>
+    <h5>Nombre de usuario</h5>
     <input
-      id="email_id"
+      id="user_id"
+      pPassword
       formControlName="username"
       type="text"
+      [feedback]="false"
       style="width: 100%"
-      pInputText
       [ngClass]="{ 'p-invalid': isValidField('username') }"
     />
     <small
@@ -28,6 +32,18 @@
       class="p-invalid"
     >
       {{ getErrorMessage("username") }}</small
+    >
+    <h5>Correo</h5>
+    <input
+      id="email_id"
+      formControlName="email"
+      type="text"
+      style="width: 100%"
+      pInputText
+      [ngClass]="{ 'p-invalid': isValidField('email') }"
+    />
+    <small *ngIf="isValidField('email')" id="username2-help" class="p-invalid">
+      {{ getErrorMessage("email") }}</small
     >
 
     <h5>Contraseña</h5>
@@ -48,24 +64,13 @@
       {{ getErrorMessage("password") }}</small
     >
 
-    <div class="checkbox mb-3">
-      <label>
-        <input
-          type="checkbox"
-          formControlName="rememberMe"
-          value="remember-me"
-        />
-        Recuerdame
-      </label>
-    </div>
-
     <button
       pButton
       pRipple
-      [disabled]="loginForm.invalid"
+      [disabled]="registerForm.invalid"
       style="width: 100%"
       type="submit"
-      label="Iniciar Sesion"
+      label="Registrarme"
       class="btn-submit p-button-outlined p-button-secondary"
     ></button>
     <p style="text-align: center" class="mt-5 mb-3 text-muted">© 2020</p>

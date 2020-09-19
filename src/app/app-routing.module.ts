@@ -4,6 +4,7 @@ import { PostListComponent } from './components/posts/post-list/post-list.compon
 import { PostDetailComponent } from './components/posts/post-detail/post-detail.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AddPostComponent } from './components/posts/add-post/add-post.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 
 //guards
 import { CheckLoginGuard } from './guards/auth/check-login.guard';
@@ -19,6 +20,7 @@ const routes: Routes = [
   },
   { path: 'noticias/detalle/:id', component: PostDetailComponent },
   { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
+  { path: 'register', component: RegisterComponent },
   {
     path: 'notFound',
     loadChildren: () =>

@@ -1,5 +1,5 @@
 <nav
-  *ngIf="router.url !== '/login'"
+  *ngIf="!(router.url === '/login' || router.url === '/register')"
   class="navbar navbar-expand-lg navbar-light bg-white shadow-sm"
 >
   <!-- solo se muestra este boton si esta en la ruta home -->
@@ -198,9 +198,10 @@
     </button>
 
     <a
+      *ngIf="!this.isLogged"
       type="button"
-      class="btn btn-light"
-      href="http://localhost/ConoceTuUPTC/admin/register/"
+      class="btn btn-warning button__register"
+      [routerLink]="['/register']"
     >
       Registrarse
       <svg
