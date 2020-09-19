@@ -1,3 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
+
 .button__register {
   margin-left: 15px;
+}
+
+.title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+}
+
+.navbar-nav a {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
 }

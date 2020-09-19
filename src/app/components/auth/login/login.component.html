@@ -1,73 +1,83 @@
 <p-toast></p-toast>
 <div>
   <form [formGroup]="loginForm" class="form-signin" (ngSubmit)="onLogin()">
-    <h1 class="h3 pt-5 font-weight-normal" style="text-align: center">
-      INICIAR SESIÓN
-    </h1>
-    <img
-      src="/assets/img/logo.jpg"
-      alt=""
-      width="150"
-      height="150"
-      style="display: block; margin: auto"
-      [routerLink]="['/']"
-    />
+    <div
+      class="container border border-light shadow mb-5 mr-3 ml-3 bg-white rounded"
+    >
+      <h1 class="h3 pt-5 font-weight-normal" style="text-align: center">
+        INICIAR SESIÓN
+      </h1>
+      <img
+        src="/assets/img/logo.jpg"
+        alt=""
+        width="150"
+        height="150"
+        style="display: block; margin: auto"
+        [routerLink]="['/']"
+      />
 
-    <h5>Correo</h5>
-    <input
-      id="email_id"
-      formControlName="username"
-      type="text"
-      style="width: 100%"
-      pInputText
-      [ngClass]="{ 'p-invalid': isValidField('username') }"
-    />
-    <small
-      *ngIf="isValidField('username')"
-      id="username2-help"
-      class="p-invalid"
-    >
-      {{ getErrorMessage("username") }}</small
-    >
+      <h5>Correo</h5>
+      <input
+        id="email_id"
+        formControlName="username"
+        type="text"
+        style="width: 100%"
+        pInputText
+        [ngClass]="{ 'p-invalid': isValidField('username') }"
+      />
+      <small
+        *ngIf="isValidField('username')"
+        id="username2-help"
+        class="p-invalid"
+      >
+        {{ getErrorMessage("username") }}</small
+      >
 
-    <h5>Contraseña</h5>
-    <input
-      id="password_id"
-      pPassword
-      formControlName="password"
-      type="password"
-      [feedback]="false"
-      style="width: 100%"
-      [ngClass]="{ 'p-invalid': isValidField('password') }"
-    />
-    <small
-      *ngIf="isValidField('password')"
-      id="username2-help"
-      class="p-invalid"
-    >
-      {{ getErrorMessage("password") }}</small
-    >
+      <h5>Contraseña</h5>
+      <input
+        id="password_id"
+        pPassword
+        formControlName="password"
+        type="password"
+        [feedback]="false"
+        style="width: 100%"
+        [ngClass]="{ 'p-invalid': isValidField('password') }"
+      />
+      <small
+        *ngIf="isValidField('password')"
+        id="username2-help"
+        class="p-invalid"
+      >
+        {{ getErrorMessage("password") }}</small
+      >
 
-    <div class="checkbox mb-3">
-      <label>
-        <input
-          type="checkbox"
-          formControlName="rememberMe"
-          value="remember-me"
-        />
-        Recuerdame
-      </label>
+      <div class="checkbox mb-3">
+        <label>
+          <input
+            type="checkbox"
+            formControlName="rememberMe"
+            value="remember-me"
+          />
+          Recuerdame
+        </label>
+      </div>
+
+      <button
+        pButton
+        pRipple
+        [disabled]="loginForm.invalid"
+        style="width: 100%"
+        type="submit"
+        label="Iniciar Sesion"
+        class="btn-submit p-button-outlined p-button-secondary"
+      ></button>
+      <p
+        [routerLink]="['/register']"
+        style="text-align: center"
+        class="mt-5 mb-3 text-muted"
+      >
+        No tiene cuenta? Registrarme
+      </p>
     </div>
-
-    <button
-      pButton
-      pRipple
-      [disabled]="loginForm.invalid"
-      style="width: 100%"
-      type="submit"
-      label="Iniciar Sesion"
-      class="btn-submit p-button-outlined p-button-secondary"
-    ></button>
-    <p style="text-align: center" class="mt-5 mb-3 text-muted">© 2020</p>
   </form>
 </div>
