@@ -159,6 +159,7 @@ class Jwt_Auth_Public
             'user_email' => $user->data->user_email,
             'user_nicename' => $user->data->user_nicename,
             'user_display_name' => $user->data->display_name,
+            'user_role' => $user->roles,
         );
 
         /** Let the user modify the data before send it back */
