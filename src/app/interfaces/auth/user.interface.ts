@@ -15,4 +15,10 @@ export interface UserResponse {
   token: string;
   user_nicename: string;
   user_display_name: string;
+
+  /* "user_role": [
+    "editor",
+    "bbp_participant"
+]*/
+  user_role: [string, string];
 }

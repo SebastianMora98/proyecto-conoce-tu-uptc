@@ -93,10 +93,15 @@
             Noticias
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <h6 class="dropdown-header">Gestionar</h6>
-            <a class="dropdown-item" [routerLink]="['/noticias/agregar']"
-              >Agregar Noticia</a
-            >
+            <a class="dropdown-item" [routerLink]="['/noticias']"
+              >Ver Noticias
+            </a>
+            <div *ngIf="getRole() == 'administrator' || getRole() == 'editor'">
+              <h6 class="dropdown-header">Gestionar</h6>
+              <a class="dropdown-item" [routerLink]="['/noticias/agregar']"
+                >Agregar Noticia
+              </a>
+            </div>
           </div>
         </li>
       </ng-template>
@@ -113,7 +118,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Bienvenido {{ username }}!
+            Bienvenido {{ getNiceName() }}!
           </a>
           <div
             class="dropdown-menu dropdown-menu-md-right"

@@ -15,6 +15,7 @@ const helper = new JwtHelperService();
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   private userNiceName = new BehaviorSubject<string>('');
+  private role = new BehaviorSubject<string>('');
   constructor(private http: HttpClient) {
     this.checkToken();
   }
@@ -27,6 +28,10 @@ export class AuthService {
     return this.userNiceName.asObservable();
   }
 
+  get userRole(): Observable<string> {
+    return this.role.asObservable();
+  }
+
   login(authData: User): Observable<UserResponse | void> {
     return this.http
       .post<UserResponse>(
@@ -35,9 +40,8 @@ export class AuthService {
       )
       .pipe(
         map((res: UserResponse) => {
-          this.saveToken(res.token);
+          this.saveToken(res.token, res.user_nicename, res.user_role[0]);
           this.loggedIn.next(true);
-          this.userNiceName.next(res.user_nicename);
           return res;
         }),
         catchError((err) => this.handleError(err))
@@ -71,7 +75,12 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('nicename');
+    localStorage.removeItem('role');
+
     this.loggedIn.next(false);
+    this.userNiceName.next('');
+    this.role.next('');
   }
 
   private checkToken(): void {
@@ -79,10 +88,19 @@ export class AuthService {
     const isExpire = helper.isTokenExpired(userToken);
 
     //si expiro el token se cierra sesion , si no ha expirado la sesion se mantiene
+
     isExpire ? this.logout() : this.loggedIn.next(true);
+    isExpire
+      ? this.logout()
+      : this.userNiceName.next(localStorage.getItem('nicename'));
+    isExpire
+      ? this.logout()
+      : this.userNiceName.next(localStorage.getItem('role'));
   }
 
-  private saveToken(token: string): void {
+  private saveToken(token: string, nicename: string, role: string): void {
     localStorage.setItem('token', token);
+    localStorage.setItem('nicename', nicename);
+    localStorage.setItem('role', role);
   }
 }

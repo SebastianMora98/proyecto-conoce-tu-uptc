@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit, OnDestroy {
   title = 'Conoce Tu UPTC';
   isLogged = false;
-  username: string;
+  role = '';
 
   private subscription: Subscription = new Subscription();
 
@@ -20,15 +20,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public authService: AuthService,
     public router: Router,
     public sideBarService: SidebarService
-  ) {}
+  ) {
+    this.role = localStorage.getItem('role');
+  }
 
   ngOnInit(): void {
     this.subscription.add(
       this.authService.isLogged.subscribe((res) => (this.isLogged = res))
     );
-    this.subscription.add(
-      this.authService.userName.subscribe((user) => (this.username = user))
-    );
+  }
+
+  getRole(): string {
+    return localStorage.getItem('role');
+  }
+
+  getNiceName(): string {
+    return localStorage.getItem('nicename');
   }
 
   ngOnDestroy(): void {
