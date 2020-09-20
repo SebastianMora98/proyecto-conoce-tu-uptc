@@ -5,6 +5,11 @@
 # Cualquier cambio en las directivas que hay entre esos marcadores serán sobrescritas.
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
 RewriteBase /ConoceTuUPTC/admin/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
