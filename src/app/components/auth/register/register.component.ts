@@ -9,7 +9,6 @@ import { RegisterUser } from '@interfaces/register/IRegisterUser';
 import { RegisterService } from '@services/register/register.service';
 import { Router } from '@angular/router';
 
-import { PrimeNGConfig } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 
 import { Subscription } from 'rxjs';
@@ -33,7 +32,6 @@ export class RegisterComponent implements OnInit {
     public registerService: RegisterService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private primengConfig: PrimeNGConfig,
     private messageService: MessageService
   ) {
     this.usernameCtrl = new FormControl(null, [Validators.required]);
