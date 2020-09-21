@@ -21,7 +21,6 @@ import { MessageService } from 'primeng/api';
 export class LoginComponent implements OnInit, OnDestroy {
   private isValidEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   private subcription: Subscription = new Subscription();
-  private isLogged: boolean = false;
 
   loginForm: FormGroup;
 
@@ -61,7 +60,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subcription.unsubscribe();
   }
   onLogin(): void {
-    this.isLogged = false;
     if (this.loginForm.value.rememberMe) {
       localStorage.setItem('username', this.loginForm.value.username);
       localStorage.setItem(
@@ -81,12 +79,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService.login(formValue).subscribe(
         (res) => {
           if (res) {
-            this.isLogged = true;
             this.router.navigate(['/home']);
           }
         },
         (err) => {
-          this.isLogged = false;
           this.messageService.add({
             severity: 'warn',
             summary: 'Usuario o contraseña incorrectos',

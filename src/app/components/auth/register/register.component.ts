@@ -23,7 +23,7 @@ import { Subscription } from 'rxjs';
 export class RegisterComponent implements OnInit {
   private isValidEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   private subcription: Subscription = new Subscription();
-  private isLogged: boolean = false;
+
   registerForm: FormGroup;
 
   usernameCtrl: FormControl;

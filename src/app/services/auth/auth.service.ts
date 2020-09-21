@@ -15,7 +15,7 @@ const helper = new JwtHelperService();
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   private userNiceName = new BehaviorSubject<string>('');
-  private role = new BehaviorSubject<string>('');
+  private role = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) {
     this.checkToken();
   }
@@ -28,7 +28,7 @@ export class AuthService {
     return this.userNiceName.asObservable();
   }
 
-  get userRole(): Observable<string> {
+  get userRole(): Observable<boolean> {
     return this.role.asObservable();
   }
 
@@ -42,6 +42,16 @@ export class AuthService {
         map((res: UserResponse) => {
           this.saveToken(res.token, res.user_nicename, res.user_role[0]);
           this.loggedIn.next(true);
+          console.log(
+            res.user_role[0] == 'administrator' || res.user_role[0] == 'editor'
+              ? true
+              : false
+          );
+          this.role.next(
+            res.user_role[0] == 'administrator' || res.user_role[0] == 'editor'
+              ? true
+              : false
+          );
           return res;
         }),
         catchError((err) => this.handleError(err))
@@ -80,7 +90,7 @@ export class AuthService {
 
     this.loggedIn.next(false);
     this.userNiceName.next('');
-    this.role.next('');
+    this.role.next(false);
   }
 
   private checkToken(): void {

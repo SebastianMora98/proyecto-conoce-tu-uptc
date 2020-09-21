@@ -1,121 +1,132 @@
-<!--<div class="container">
-  <h4>Agregar Noticia</h4>
-  <div class="p-fluid p-grid">
-    <div class="p-field p-col-12 p-md-3">
-      <h5>Titulo</h5>
-      <input type="text" pInputText [(ngModel)]="titulo" />
-    </div>
-    <div class="p-field p-col-12 p-md-3">
-      <h5>Extracto</h5>
-      <textarea
-        inputId="textarea"
-        rows="3"
-        cols="30"
-        [(ngModel)]="extracto"
-        pInputTextarea
-      ></textarea>
-    </div>
-    <div class="p-field p-col-12 p-md-3">
-      <div class="form-group">
-        <label for="file">Choose File</label>
-        <input
-          type="file"
-          id="file"
-          (change)="handleFileInput($event.target.files)"
-        />
+<form #createPostForm="ngForm" (ngSubmit)="onCreatePost(createPostForm)">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputEmail4">Añadir título</label>
+            <input
+              type="text"
+              name="titulo"
+              class="form-control"
+              id="inputEmail4"
+              ngModel
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Contenido de la noticia</label>
+            <p-editor
+              [(ngModel)]="contenido"
+              [style]="{ height: '320px' }"
+              name="editor"
+            >
+              <ng-template pTemplate="header">
+                <span class="ql-formats">
+                  <button
+                    type="button"
+                    class="ql-bold"
+                    aria-label="Bold"
+                  ></button>
+                  <button
+                    type="button"
+                    class="ql-italic"
+                    aria-label="Italic"
+                  ></button>
+                  <button
+                    type="button"
+                    class="ql-underline"
+                    aria-label="Underline"
+                  ></button>
+                </span>
+              </ng-template>
+            </p-editor>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <label for="inputAddress2">Visibilidad</label>
+            <select
+              name="selector"
+              class="custom-select mr-sm-2"
+              [(ngModel)]="visibilityOption"
+              (ngModelChange)="toNumber()"
+            >
+              <option *ngFor="let item of visibility" [value]="item.num">
+                {{ item.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-md-4" style="display: flex">
+            <button
+              type="submit"
+              class="btn btn-warning"
+              style="align-self: flex-end; width: 100%"
+            >
+              Publicar
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputAddress2" style="display: block"
+            >Fecha de publicación</label
+          >
+          <p-calendar
+            inputId="calendar"
+            [locale]="es"
+            dateFormat="dd/mm/yy"
+            showButtonBar="true"
+            [showIcon]="true"
+            [(ngModel)]="fecha"
+            name="date"
+          ></p-calendar>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2" style="display: block">Categorias</label
+          ><p-multiSelect
+            *ngIf="categories"
+            [options]="categories"
+            [(ngModel)]="selectedCategories"
+            defaultLabel="Seleccionar categorias"
+            optionLabel="name"
+            name="categories"
+          ></p-multiSelect>
+        </div>
+        <div class="form-group">
+          <div class="custom-file">
+            <input
+              type="file"
+              class="custom-file-input"
+              id="customFileLangHTML"
+              name="file"
+              (change)="handleFileInput($event.target.files)"
+            />
+            <label
+              class="custom-file-label"
+              for="customFileLangHTML"
+              data-browse="Seleccionar"
+              >Imagen destacada</label
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1"
+            >Escribe un extracto (opcional)</label
+          >
+          <textarea
+            class="form-control"
+            name="extracto"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            ngModel
+          ></textarea>
+        </div>
       </div>
     </div>
-    <div class="p-field p-col-12 p-md-4">
-      <h5>Contenido</h5>
-      <p-editor [(ngModel)]="text2" [style]="{ height: '320px' }">
-        <ng-template pTemplate="header">
-          <span class="ql-formats">
-            <button type="button" class="ql-bold" aria-label="Bold"></button>
-            <button
-              type="button"
-              class="ql-italic"
-              aria-label="Italic"
-            ></button>
-            <button
-              type="button"
-              class="ql-underline"
-              aria-label="Underline"
-            ></button>
-          </span>
-        </ng-template>
-      </p-editor>
-    </div>
   </div>
-
-  <p>Value: {{ text2 || "empty" }}</p>
-  <p>Value: {{ fileToUpload || "empty" }}</p>
-</div>
--->
-
-<div class="p-fluid p-grid">
-  <div class="p-field p-col-12 p-md-4">
-    <span class="p-float-label">
-      <input type="text" id="inputtext" pInputText [(ngModel)]="titulo" />
-      <label for="inputtext">titulo</label>
-    </span>
-  </div>
-
-  <div class="p-field p-col-12 p-md-4">
-    <span class="p-float-label">
-      <p-calendar inputId="calendar" [(ngModel)]="fecha"></p-calendar>
-      <label for="calendar">Calendar</label>
-    </span>
-  </div>
-
-  <div class="p-field p-col-12 p-md-4">
-    <div class="p-inputgroup">
-      <span class="p-inputgroup-addon">
-        <i class="pi pi-user"></i>
-      </span>
-      <span class="p-float-label">
-        <input type="text" id="inputgroup" pInputText [(ngModel)]="autor" />
-        <label for="inputgroup">Author</label>
-      </span>
-    </div>
-  </div>
-
-  <div class="p-field p-col-12 p-md-4">
-    <span class="p-float-label">
-      <p-multiSelect
-        inputId="multiselect"
-        [options]="categorias"
-        [(ngModel)]="categorias"
-        optionLabel="name"
-        [filter]="false"
-      ></p-multiSelect>
-      <label for="multiselect">Categorias</label>
-    </span>
-  </div>
-  <div class="p-field p-col-12 p-md-4">
-    <span class="p-float-label">
-      <textarea
-        inputId="textarea"
-        rows="3"
-        cols="30"
-        [(ngModel)]="extracto"
-        pInputTextarea
-      ></textarea>
-      <label for="textarea">Textarea</label>
-    </span>
-  </div>
-  <div class="p-field p-col-12 p-md-12">
-    <p-editor [(ngModel)]="text2" [style]="{ height: '320px' }">
-      <ng-template pTemplate="header">
-        <span class="ql-formats">
-          <button type="button" class="ql-bold" aria-label="Bold"></button>
-          <button type="button" class="ql-italic" aria-label="Italic"></button>
-          <button
-            type="button"
-            class="ql-underline"
-            aria-label="Underline"
-          ></button>
-        </span>
-      </ng-template>
-    </p-editor>
-  </div>
-</div>
+</form>

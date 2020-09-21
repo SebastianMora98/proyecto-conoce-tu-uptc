@@ -32,6 +32,28 @@ export interface Embedded {
   ['wp:term']: Array<EmbeddedWpTerm[]>;
 }
 
+export interface CreatePost {
+  title: string;
+  content: string;
+  status: string;
+  date: Date;
+  categorias: number[];
+  file: File;
+  extracto: string;
+}
+
+export interface Meta {
+  _bbp_topic_count: number;
+  _bbp_reply_count: number;
+  _bbp_total_topic_count: number;
+  _bbp_total_reply_count: number;
+  _bbp_voice_count: number;
+  _bbp_anonymous_reply_count: number;
+  _bbp_topic_count_hidden: number;
+  _bbp_reply_count_hidden: number;
+  _bbp_forum_subforum_count: number;
+}
+
 export interface EmbeddedAuthor {
   id: number;
   name: string;
@@ -179,4 +201,67 @@ export interface LinksWpTerm {
 export interface Content {
   rendered: string;
   protected: boolean;
+}
+
+// Create Post Response
+
+export interface CreatePostResponse {
+  id: number;
+  date: Date;
+  date_gmt: Date;
+  guid: GUID;
+  modified: Date;
+  modified_gmt: Date;
+  password: string;
+  slug: string;
+  status: string;
+  type: string;
+  link: string;
+  title: GUID;
+  content: Content;
+  excerpt: Content;
+  author: number;
+  featured_media: number;
+  comment_status: string;
+  ping_status: string;
+  sticky: boolean;
+  template: string;
+  format: string;
+  meta: Meta;
+  categories: number[];
+  tags: any[];
+  permalink_template: string;
+  generated_slug: string;
+  _links: Links;
+}
+
+export interface Links {
+  self: About[];
+  collection: About[];
+  about: About[];
+  author: Author[];
+  replies: Author[];
+  'version-history': VersionHistory[];
+  'wp:featuredmedia': Author[];
+  'wp:attachment': About[];
+  'wp:term': WpTerm[];
+  'wp:action-publish': About[];
+  'wp:action-unfiltered-html': About[];
+  'wp:action-sticky': About[];
+  'wp:action-assign-author': About[];
+  'wp:action-create-categories': About[];
+  'wp:action-assign-categories': About[];
+  'wp:action-create-tags': About[];
+  'wp:action-assign-tags': About[];
+  curies: Cury[];
+}
+export interface Author {
+  embeddable: boolean;
+  href: string;
+}
+
+export interface WpTerm {
+  taxonomy: string;
+  embeddable: boolean;
+  href: string;
 }

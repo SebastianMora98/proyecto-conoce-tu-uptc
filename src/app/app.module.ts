@@ -26,6 +26,7 @@ import { PostListComponent } from './components/posts/post-list/post-list.compon
 import { LoginComponent } from './components/auth/login/login.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RegisterComponent } from './components/auth/register/register.component
     LoginComponent,
     PostDetailComponent,
     RegisterComponent,
+    FooterComponent,
   ],
   imports: [
     AppPrimengModule,

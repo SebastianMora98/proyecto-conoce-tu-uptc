@@ -37,7 +37,7 @@ export class DataWpService {
 
   getCategories(): Observable<PostInterface[]> {
     return this.http.get<PostInterface[]>(
-      'http://localhost/ConoceTuUPTC/admin/wp-json/wp/v2/categories?orderby=id'
+      'http://localhost/ConoceTuUPTC/admin/wp-json/wp/v2/categories?orderby=id&per_page=100'
     );
   }
 }

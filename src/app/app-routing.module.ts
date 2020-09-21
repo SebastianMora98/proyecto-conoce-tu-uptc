@@ -9,6 +9,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 //guards
 import { CheckLoginGuard } from './guards/auth/check-login.guard';
 import { CheckPostGuard } from './guards/post/check-post.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,16 +25,14 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'notFound',
-    loadChildren: () =>
-      import('./components/not-found/not-found.module').then(
-        (m) => m.NotFoundModule
-      ),
+    component: NotFoundComponent,
   },
   {
     path: 'home',
     loadChildren: () =>
       import('./components/home/home.module').then((m) => m.HomeModule),
   },
+  { path: '**', redirectTo: 'notFound' },
 ];
 
 @NgModule({

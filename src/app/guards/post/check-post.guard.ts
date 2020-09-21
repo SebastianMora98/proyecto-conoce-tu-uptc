@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '@services/auth/auth.service';
 import { map, take } from 'rxjs/operators';
@@ -8,11 +8,23 @@ import { map, take } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CheckPostGuard implements CanActivate {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
+
   canActivate(): Observable<boolean> {
-    return this.authService.isLogged.pipe(
+    return this.authService.userRole.pipe(
       take(1),
-      map((isLogged: boolean) => isLogged)
+      map((userRole: boolean) => {
+        userRole =
+          localStorage.getItem('role') == 'editor' ||
+          localStorage.getItem('role') == 'administrator'
+            ? true
+            : false;
+
+        if (!userRole) {
+          this.router.navigate(['/']);
+        }
+        return userRole;
+      })
     );
   }
 }
