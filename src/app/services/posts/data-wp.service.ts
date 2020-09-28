@@ -26,6 +26,10 @@ export class DataWpService {
       },
     });
   }*/
+  getLastPosts(): Observable<PostInterface[]> {
+    return this.http.get<PostInterface[]>(this.urlApi);
+  }
+
   getPostsPerPage(per_page: string, page: string): Observable<PostInterface[]> {
     return this.http.get<PostInterface[]>(this.urlApi, {
       params: {

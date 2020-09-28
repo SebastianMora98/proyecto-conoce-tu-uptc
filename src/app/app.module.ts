@@ -18,15 +18,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // COMPONENTS
 import { AppComponent } from './app.component';
 // posts
-import { AddPostComponent } from './components/posts/add-post/add-post.component';
+import { AddPostComponent } from './pages/posts/add-post/add-post.component';
 import { PostComponent } from './components/posts/post/post.component';
-import { PostDetailComponent } from './components/posts/post-detail/post-detail.component';
-import { PostListComponent } from './components/posts/post-list/post-list.component';
+import { PostDetailComponent } from './pages/posts/post-detail/post-detail.component';
+import { PostListComponent } from './pages/posts/post-list/post-list.component';
 // auth
-import { LoginComponent } from './components/auth/login/login.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { RegisterComponent } from './components/auth/register/register.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { ServiciosComponent } from './pages/servicios/servicios.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,11 @@ import { FooterComponent } from './shared/footer/footer.component';
     PostDetailComponent,
     RegisterComponent,
     FooterComponent,
+    NotFoundComponent,
+    HomeComponent,
+    GalleryComponent,
+    CarouselComponent,
+    ServiciosComponent,
   ],
   imports: [
     AppPrimengModule,

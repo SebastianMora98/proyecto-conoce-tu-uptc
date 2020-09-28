@@ -1,5 +1,11 @@
 <nav
-  *ngIf="!(router.url === '/login' || router.url === '/register')"
+  *ngIf="
+    !(
+      router.url === '/login' ||
+      router.url === '/register' ||
+      router.url === '/404'
+    )
+  "
   class="navbar navbar-expand-lg navbar-light bg-white shadow-sm"
 >
   <div class="container" style="max-width: 1500px">
@@ -57,10 +63,15 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <h6 class="dropdown-header">Categorias</h6>
-            <a class="dropdown-item" href="#">Informacion Institucional</a>
-            <a class="dropdown-item" href="#">Servicios</a>
-            <a class="dropdown-item" href="#">Deporte y cultura</a>
-            <a class="dropdown-item" href="#">Grupos de investigacion</a>
+            <a class="dropdown-item" [routerLink]="['/']"
+              >Informacion Institucional</a
+            >
+            <a class="dropdown-item" [routerLink]="['/servicios']">Servicios</a>
+            <a
+              class="dropdown-item"
+              href="http://www.uptc.edu.co/direccion_investigaciones/cent_grupos/grup_inv/index.html"
+              >Grupos de investigacion</a
+            >
           </div>
         </li>
         <li class="nav-item">

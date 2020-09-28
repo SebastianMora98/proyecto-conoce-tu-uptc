@@ -1,19 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PostListComponent } from './components/posts/post-list/post-list.component';
-import { PostDetailComponent } from './components/posts/post-detail/post-detail.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { AddPostComponent } from './components/posts/add-post/add-post.component';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { PostListComponent } from './pages/posts/post-list/post-list.component';
+import { PostDetailComponent } from './pages/posts/post-detail/post-detail.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { AddPostComponent } from './pages/posts/add-post/add-post.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
 
 //guards
 import { CheckLoginGuard } from './guards/auth/check-login.guard';
 import { CheckPostGuard } from './guards/post/check-post.guard';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HomeComponent } from './components/home/home.component';
+import { ServiciosComponent } from './pages/servicios/servicios.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
+  { path: 'register', component: RegisterComponent },
+  { path: 'servicios', component: ServiciosComponent },
   { path: 'noticias', component: PostListComponent },
   {
     path: 'noticias/agregar',
@@ -21,18 +26,8 @@ const routes: Routes = [
     canActivate: [CheckPostGuard],
   },
   { path: 'noticias/detalle/:id', component: PostDetailComponent },
-  { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
-  { path: 'register', component: RegisterComponent },
-  {
-    path: 'notFound',
-    component: NotFoundComponent,
-  },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('./components/home/home.module').then((m) => m.HomeModule),
-  },
-  { path: '**', redirectTo: 'notFound' },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' },
 ];
 
 @NgModule({

@@ -1,0 +1,15 @@
+<p-galleria
+  [(value)]="images"
+  [containerStyle]="{ 'max-width': '100%' }"
+  [circular]="true"
+  [autoPlay]="true"
+  [showThumbnails]="false"
+  [transitionInterval]="7000"
+>
+  <ng-template pTemplate="item" let-item>
+    <img
+      [src]="item.previewImageSrc"
+      style="width: 100%; height: 300px; object-fit: cover; display: block"
+    />
+  </ng-template>
+</p-galleria>
