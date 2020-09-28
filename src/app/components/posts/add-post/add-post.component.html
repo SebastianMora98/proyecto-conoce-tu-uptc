@@ -314,15 +314,7 @@
                 id="exampleFormControlTextarea1"
                 formControlName="excerpt"
                 rows="3"
-                [ngClass]="{ 'p-invalid': isValidField('excerpt') }"
               ></textarea>
-              <small
-                *ngIf="isValidField('excerpt')"
-                id="excerpt-help"
-                class="p-invalid"
-              >
-                {{ getErrorMessage("excerpt") }}</small
-              >
             </div>
           </div>
         </div>

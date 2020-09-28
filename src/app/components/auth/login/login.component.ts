@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {
     this.emailCtrl = new FormControl(null, [
       Validators.required,
-      Validators.pattern(this.isValidEmail),
+      Validators.minLength(5),
     ]);
     this.passwordCtrl = new FormControl(null, [
       Validators.required,

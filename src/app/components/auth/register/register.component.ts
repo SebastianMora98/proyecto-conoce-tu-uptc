@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
   providers: [MessageService],
 })
 export class RegisterComponent implements OnInit {
-  private isValidEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+  private isValidEmail = /^[a-z0-9._%+-]+@uptc.edu.co/;
   private subcription: Subscription = new Subscription();
 
   registerForm: FormGroup;
@@ -34,7 +34,10 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private messageService: MessageService
   ) {
-    this.usernameCtrl = new FormControl(null, [Validators.required]);
+    this.usernameCtrl = new FormControl(null, [
+      Validators.required,
+      Validators.minLength(5),
+    ]);
     this.emailCtrl = new FormControl(null, [
       Validators.required,
       Validators.pattern(this.isValidEmail),
@@ -115,7 +118,8 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.get(field).errors?.required) {
       message = 'Este campo no puede estar vacio';
     } else if (this.registerForm.get(field).hasError('pattern')) {
-      message = 'No es un email valido';
+      message =
+        'Debe ingresar una direccion de correo institucional @uptc.edu.co';
     } else if (this.registerForm.get(field).hasError('minlength')) {
       const minLength = this.registerForm.get(field).errors?.minlength
         .requiredLength;
