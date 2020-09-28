@@ -30,6 +30,7 @@ const loginServiceStub = {
       token: 'token',
       user_nicename: authData.username,
       user_display_name: authData.username,
+      user_role: ['editor', 'bbp_participant'],
     };
     return response;
   },
@@ -157,18 +158,19 @@ describe('LoginComponent', () => {
 
   it('debiera llamar al servicio de authenticacion cuando el formulario de login es valido', () => {
     const userResponse = {
-      user_email: 'test@gmail.com',
+      user_email: 'sebastian',
       token: 'fake-token',
       user_nicename: 'test',
       user_display_name: 'test',
+      user_role: ['editor', 'bbp_participant'],
     };
 
     // se simula una respuesta por parte del metodo login del servicio de autenticacion
     const serviceLogin = spyOn(loginService, 'login').and.returnValue(
-      of(userResponse)
+      of(userResponse as UserResponse)
     );
 
-    component.loginForm.get('username').setValue('test@gmail.com');
+    component.loginForm.get('username').setValue('sebastian');
     component.loginForm.get('password').setValue('Test123456');
     component.loginForm.get('rememberMe').setValue(false);
 
@@ -180,15 +182,16 @@ describe('LoginComponent', () => {
 
   it('debiera NO llamar al servicio de authenticacion cuando el formulario de login es INVALIDO', () => {
     const userResponse = {
-      user_email: 'test@gmail.com',
+      user_email: 'sebastian',
       token: 'fake-token',
       user_nicename: 'test',
       user_display_name: 'test',
+      user_role: ['editor', 'bbp_participant'],
     };
 
     // se simula una respuesta por parte del metodo login del servicio de autenticacion
     const serviceLogin = spyOn(loginService, 'login').and.returnValue(
-      of(userResponse)
+      of(userResponse as UserResponse)
     );
 
     // CORREO INVALIDO
