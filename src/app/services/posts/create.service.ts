@@ -14,6 +14,9 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Title } from '@angular/platform-browser';
 
+/**
+ * Servicio crear post, este servicio crea un post a partir de los datos suministrados.
+ */
 @Injectable({
   providedIn: 'root',
 })

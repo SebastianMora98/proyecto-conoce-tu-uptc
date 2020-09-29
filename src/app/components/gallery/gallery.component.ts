@@ -4,7 +4,9 @@ import { PostInterface } from '@interfaces/wp_interfaces/post/post.interface';
 import { Subscription } from 'rxjs';
 import { Galleria } from 'primeng/galleria';
 import { map } from 'rxjs/operators';
-
+/**
+ * Componente Galeria, muestra una galeria de imagenes de las ultimas noticias añadidas
+ */
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',

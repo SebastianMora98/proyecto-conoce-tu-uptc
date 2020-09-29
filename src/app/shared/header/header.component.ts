@@ -3,7 +3,9 @@ import { AuthService } from '@services/auth/auth.service';
 import { SidebarService } from '@services/sidebar/sidebar.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-
+/**
+ * Componente header, muestra una barra de navegacion superior que permite navegar por le aplicativo
+ */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

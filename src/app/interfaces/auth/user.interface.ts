@@ -1,3 +1,6 @@
+/**
+ * @ignore
+ */
 export type Roles =
   | 'Suscriptor'
   | 'Colaborador'
@@ -5,11 +8,17 @@ export type Roles =
   | 'Editor'
   | 'Administrador';
 
+/**
+ * @ignore
+ */
 export interface User {
   username: string;
   password: string;
 }
 
+/**
+ * @ignore
+ */
 export interface UserResponse {
   user_email: string;
   token: string;

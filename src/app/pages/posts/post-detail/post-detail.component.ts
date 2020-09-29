@@ -8,7 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { DomSanitizer } from '@angular/platform-browser';
-
+/**
+ * Componente detalles de noticia, muestra la noticia completa a partir del id de la noticia.
+ */
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',

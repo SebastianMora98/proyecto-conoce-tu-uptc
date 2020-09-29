@@ -7,6 +7,9 @@ import {
   RegisterUserResponse,
 } from '@interfaces/register/IRegisterUser';
 import { environment } from '@env/environment';
+/**
+ * Servicio de registro, este servicio permite registrar usuarios.
+ */
 @Injectable({
   providedIn: 'root',
 })

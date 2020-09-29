@@ -1,9 +1,15 @@
+/**
+ * @ignore
+ */
 export interface RegisterUser {
   username: string;
   email: string;
   password: string;
 }
 
+/**
+ * @ignore
+ */
 export interface RegisterUserResponse {
   code: number;
   id?: number;
@@ -15,12 +21,18 @@ export interface RegisterUserResponse {
   };
 }
 
+/**
+ * @ignore
+ */
 export interface RegisterUserSuccess {
   code: number;
   id: number;
   message: string;
 }
 
+/**
+ * @ignore
+ */
 export interface RegisterUserAlreadyExists {
   code: number;
   message: string;

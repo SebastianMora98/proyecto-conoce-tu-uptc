@@ -3,6 +3,9 @@ import { DataWpService } from '@services/posts/data-wp.service';
 import { PostInterface } from '@interfaces/wp_interfaces/post/post.interface';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
+/**
+ * Componente lista de posts, muestra una lista de las noticias almacenadas.
+ */
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',

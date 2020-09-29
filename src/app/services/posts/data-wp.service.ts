@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PostInterface } from '@interfaces/wp_interfaces/post/post.interface';
 import { Observable } from 'rxjs';
-
+/**
+ * Este servicio devuelve la informacion de los posts (noticias) y las categorias.
+ */
 @Injectable({
   providedIn: 'root',
 })

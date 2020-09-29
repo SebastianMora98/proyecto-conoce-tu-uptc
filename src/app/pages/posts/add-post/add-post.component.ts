@@ -27,6 +27,10 @@ interface ICategoria {
   name: string;
   id: number;
 }
+
+/**
+ * Componente de agregar post, este componente permite agregar noticias mediante un formulario, ademas realiza la validacion de los campos.
+ */
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',

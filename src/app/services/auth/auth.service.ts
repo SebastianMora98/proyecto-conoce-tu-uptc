@@ -8,18 +8,29 @@ import { catchError, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 const helper = new JwtHelperService();
-
+/**
+ * Servicio de autenticación, este servicio permite inciar una sesionon  de usuario y ademas cerrarla.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  /**
+   * {@link loggedIn}
+   * Estado del usuario, si se encuentra loggeado o no
+   */
   private loggedIn = new BehaviorSubject<boolean>(false);
+  /**
+   * Nombre de usuario del usuario
+   */
   private userNiceName = new BehaviorSubject<string>('');
+  /**
+   * si el usuario es administrador o editor cambia su estado a true
+   */
   private role = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient) {
     this.checkToken();
   }
-
   get isLogged(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
