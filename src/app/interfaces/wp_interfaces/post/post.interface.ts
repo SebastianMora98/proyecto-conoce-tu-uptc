@@ -1,3 +1,6 @@
+/**
+ * @ignore
+ */
 export interface PostInterface {
   id: number;
   date: Date;
@@ -25,13 +28,17 @@ export interface PostInterface {
   _links: _Links;
   _embedded: Embedded;
 }
-
+/**
+ * @ignore
+ */
 export interface Embedded {
   author: EmbeddedAuthor[];
   ['wp:featuredmedia']: WpFeaturedmedia[];
   ['wp:term']: Array<EmbeddedWpTerm[]>;
 }
-
+/**
+ * @ignore
+ */
 export interface CreatePost {
   title: string;
   content: string;
@@ -41,7 +48,9 @@ export interface CreatePost {
   file: File;
   extracto: string;
 }
-
+/**
+ * @ignore
+ */
 export interface Meta {
   _bbp_topic_count: number;
   _bbp_reply_count: number;
@@ -53,7 +62,9 @@ export interface Meta {
   _bbp_reply_count_hidden: number;
   _bbp_forum_subforum_count: number;
 }
-
+/**
+ * @ignore
+ */
 export interface EmbeddedAuthor {
   id: number;
   name: string;
@@ -64,16 +75,22 @@ export interface EmbeddedAuthor {
   avatar_urls: { [key: string]: string };
   _links: AuthorLinks;
 }
-
+/**
+ * @ignore
+ */
 export interface AuthorLinks {
   self: About[];
   collection: About[];
 }
-
+/**
+ * @ignore
+ */
 export interface About {
   href: string;
 }
-
+/**
+ * @ignore
+ */
 export interface WpFeaturedmedia {
   id: number;
   date: Date;
@@ -90,7 +107,9 @@ export interface WpFeaturedmedia {
   source_url: string;
   _links: WpFeaturedmediaLinks;
 }
-
+/**
+ * @ignore
+ */
 export interface WpFeaturedmediaLinks {
   self: About[];
   collection: About[];
@@ -98,16 +117,22 @@ export interface WpFeaturedmediaLinks {
   author: ReplyElement[];
   replies: ReplyElement[];
 }
-
+/**
+ * @ignore
+ */
 export interface ReplyElement {
   embeddable: boolean;
   href: string;
 }
-
+/**
+ * @ignore
+ */
 export interface GUID {
   rendered: string;
 }
-
+/**
+ * @ignore
+ */
 export interface MediaDetails {
   width: number;
   height: number;
@@ -115,7 +140,9 @@ export interface MediaDetails {
   sizes: Sizes;
   image_meta: ImageMeta;
 }
-
+/**
+ * @ignore
+ */
 export interface ImageMeta {
   aperture: string;
   credit: string;
@@ -130,13 +157,17 @@ export interface ImageMeta {
   orientation: string;
   keywords: any[];
 }
-
+/**
+ * @ignore
+ */
 export interface Sizes {
   medium: Full;
   thumbnail: Full;
   full: Full;
 }
-
+/**
+ * @ignore
+ */
 export interface Full {
   file: string;
   width: number;
@@ -144,7 +175,9 @@ export interface Full {
   mime_type: string;
   source_url: string;
 }
-
+/**
+ * @ignore
+ */
 export interface EmbeddedWpTerm {
   id: number;
   link: string;
@@ -153,7 +186,9 @@ export interface EmbeddedWpTerm {
   taxonomy: string;
   _links: WpTermLinks;
 }
-
+/**
+ * @ignore
+ */
 export interface WpTermLinks {
   self: About[];
   collection: About[];
@@ -161,13 +196,17 @@ export interface WpTermLinks {
   'wp:post_type': About[];
   curies: Cury[];
 }
-
+/**
+ * @ignore
+ */
 export interface Cury {
   name: string;
   href: string;
   templated: boolean;
 }
-
+/**
+ * @ignore
+ */
 export interface _Links {
   self: About[];
   collection: About[];
@@ -181,30 +220,40 @@ export interface _Links {
   'wp:term': LinksWpTerm[];
   curies: Cury[];
 }
-
+/**
+ * @ignore
+ */
 export interface PredecessorVersion {
   id: number;
   href: string;
 }
-
+/**
+ * @ignore
+ */
 export interface VersionHistory {
   count: number;
   href: string;
 }
-
+/**
+ * @ignore
+ */
 export interface LinksWpTerm {
   taxonomy: string;
   embeddable: boolean;
   href: string;
 }
-
+/**
+ * @ignore
+ */
 export interface Content {
   rendered: string;
   protected: boolean;
 }
 
 // Create Post Response
-
+/**
+ * @ignore
+ */
 export interface CreatePostResponse {
   id: number;
   date: Date;
@@ -234,7 +283,9 @@ export interface CreatePostResponse {
   generated_slug: string;
   _links: Links;
 }
-
+/**
+ * @ignore
+ */
 export interface Links {
   self: About[];
   collection: About[];
@@ -255,11 +306,16 @@ export interface Links {
   'wp:action-assign-tags': About[];
   curies: Cury[];
 }
+/**
+ * @ignore
+ */
 export interface Author {
   embeddable: boolean;
   href: string;
 }
-
+/**
+ * @ignore
+ */
 export interface WpTerm {
   taxonomy: string;
   embeddable: boolean;

@@ -7,12 +7,22 @@ import {
   RegisterUserResponse,
 } from '@interfaces/register/IRegisterUser';
 import { environment } from '@env/environment';
+/**
+ * Servicio de registro, este servicio permite registrar usuarios.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
+  /**
+   * Constructor del servicio de creacion de noticias
+   * @param {HttpClient} http  Libreria que permite realizar peticiones al servidor
+   */
   constructor(private http: HttpClient) {}
-
+  /**
+   * @param {RegisterUser} registerData  Contiene la informacion de usuario requerida (usuario , correo y contraseña) para el registro.
+   * @returns Regresa una respuesta por parte del servidor con la informacion del usuario registrado
+   */
   register(
     registerData: RegisterUser
   ): Observable<RegisterUserResponse | void> {
@@ -34,7 +44,10 @@ export class RegisterService {
         catchError((err) => this.handleError(err))
       );
   }
-
+  /**
+   * @param {HttpErrorResponse} error Error a manejar
+   * @returns Regresa un observable del error
+   */
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

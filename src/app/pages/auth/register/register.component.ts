@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 import { Subscription } from 'rxjs';
-
+/**
+ * Componente de registro, este componente tiene el formulario de registro, ademas valida los campos introducidos.
+ */
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,7 +38,7 @@ export class RegisterComponent implements OnInit {
   ) {
     this.usernameCtrl = new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(4),
     ]);
     this.emailCtrl = new FormControl(null, [
       Validators.required,
@@ -44,7 +46,7 @@ export class RegisterComponent implements OnInit {
     ]);
     this.passwordCtrl = new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(4),
     ]);
 
     this.registerForm = this.formBuilder.group({
@@ -123,7 +125,7 @@ export class RegisterComponent implements OnInit {
     } else if (this.registerForm.get(field).hasError('minlength')) {
       const minLength = this.registerForm.get(field).errors?.minlength
         .requiredLength;
-      message = `La contraseña debe tener minimo ${minLength} caracteres`;
+      message = `El campo debe tener minimo ${minLength} caracteres`;
     }
     return message;
   }

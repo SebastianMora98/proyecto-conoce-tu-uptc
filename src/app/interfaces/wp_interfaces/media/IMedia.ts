@@ -1,3 +1,6 @@
+/**
+ * @ignore
+ */
 export interface IMedia {
   id: number;
   date: Date;
@@ -28,7 +31,9 @@ export interface IMedia {
   missing_image_sizes: any[];
   _links: Links;
 }
-
+/**
+ * @ignore
+ */
 export interface Links {
   self: About[];
   collection: About[];
@@ -39,27 +44,37 @@ export interface Links {
   'wp:action-assign-author': About[];
   curies: Cury[];
 }
-
+/**
+ * @ignore
+ */
 export interface About {
   href: string;
 }
-
+/**
+ * @ignore
+ */
 export interface Author {
   embeddable: boolean;
   href: string;
 }
-
+/**
+ * @ignore
+ */
 export interface Cury {
   name: string;
   href: string;
   templated: boolean;
 }
-
+/**
+ * @ignore
+ */
 export interface Caption {
   raw: string;
   rendered: string;
 }
-
+/**
+ * @ignore
+ */
 export interface MediaDetails {
   width: number;
   height: number;
@@ -67,7 +82,9 @@ export interface MediaDetails {
   sizes: Sizes;
   image_meta: ImageMeta;
 }
-
+/**
+ * @ignore
+ */
 export interface ImageMeta {
   aperture: string;
   credit: string;
@@ -82,13 +99,17 @@ export interface ImageMeta {
   orientation: string;
   keywords: any[];
 }
-
+/**
+ * @ignore
+ */
 export interface Sizes {
   medium: Full;
   thumbnail: Full;
   full: Full;
 }
-
+/**
+ * @ignore
+ */
 export interface Full {
   file: string;
   width: number;
@@ -96,7 +117,9 @@ export interface Full {
   mime_type: string;
   source_url: string;
 }
-
+/**
+ * @ignore
+ */
 export interface Meta {
   _bbp_topic_count: number;
   _bbp_reply_count: number;

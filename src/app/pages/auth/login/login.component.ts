@@ -11,7 +11,9 @@ import { Subscription } from 'rxjs';
 
 import { PrimeNGConfig } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-
+/**
+ * Componente de login, este componente contiene el formulario de inicio de sesion, ademas valida los campos introducidos.
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,11 +39,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {
     this.emailCtrl = new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(4),
     ]);
     this.passwordCtrl = new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(4),
     ]);
     this.rememberMeCtrl = new FormControl(false);
 
@@ -101,7 +103,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     } else if (this.loginForm.get(field).hasError('minlength')) {
       const minLength = this.loginForm.get(field).errors?.minlength
         .requiredLength;
-      message = `La contraseña debe tener minimo ${minLength} caracteres`;
+      message = `El campo debe tener minimo ${minLength} caracteres`;
     }
     return message;
   }

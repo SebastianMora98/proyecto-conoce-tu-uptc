@@ -1,3 +1,6 @@
+/**
+ * @ignore
+ */
 export interface ICategories {
   id: number;
   count: number;
@@ -11,6 +14,9 @@ export interface ICategories {
   _links: Links;
 }
 
+/**
+ * @ignore
+ */
 export interface Links {
   self: About[];
   collection: About[];
@@ -19,10 +25,16 @@ export interface Links {
   curies: Cury[];
 }
 
+/**
+ * @ignore
+ */
 export interface About {
   href: string;
 }
 
+/**
+ * @ignore
+ */
 export interface Cury {
   name: Name;
   href: Href;

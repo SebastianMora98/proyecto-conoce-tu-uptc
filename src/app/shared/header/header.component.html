@@ -9,30 +9,6 @@
   class="navbar navbar-expand-lg navbar-light bg-white shadow-sm"
 >
   <div class="container" style="max-width: 1500px">
-    <!-- solo se muestra este boton si esta en la ruta home -->
-    <div *ngIf="router.url === '/home'">
-      <button
-        type="button"
-        class="navbar-toggler btn btn-light"
-        [class.active]="sideBarService.showSidebar"
-        (click)="sideBarService.ToggleSideBar()"
-      >
-        <svg
-          width="1em"
-          height="1em"
-          viewBox="0 0 16 16"
-          class="bi bi-layout-sidebar"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M14 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"
-          ></path>
-          <path fill-rule="evenodd" d="M4 14V2h1v12H4z"></path>
-        </svg>
-      </button>
-    </div>
     <a class="navbar-brand title" [routerLink]="['/']">{{ title }}</a>
     <!-- despliega el menu de la navbar -->
     <button

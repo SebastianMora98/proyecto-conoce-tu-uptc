@@ -8,18 +8,32 @@ import { catchError, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 const helper = new JwtHelperService();
-
+/**
+ * Servicio de autenticación, este servicio permite iniciar una sesion de usuario y ademas cerrarla.
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  /**
+   * Estado del usuario, si se encuentra loggeado o no
+   */
   private loggedIn = new BehaviorSubject<boolean>(false);
+  /**
+   * Nombre de usuario del usuario
+   */
   private userNiceName = new BehaviorSubject<string>('');
+  /**
+   * Si el usuario es administrador o editor cambia su estado a true
+   */
   private role = new BehaviorSubject<boolean>(false);
+  /**
+   * Constructor del servicio de autenticacion de usuarios
+   * @param {HttpClient} http  Libreria que permite realizar peticiones al servidor
+   */
   constructor(private http: HttpClient) {
     this.checkToken();
   }
-
   get isLogged(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
@@ -32,6 +46,10 @@ export class AuthService {
     return this.role.asObservable();
   }
 
+  /**
+   * @param {User} authData  Contiene la informacion de usuario requerida (usuario y contraseña) para el inicio de sesion
+   * @returns Regresa una respuesta por parte del servidor con la informacion del usuario y el token generado
+   */
   login(authData: User): Observable<UserResponse | void> {
     return this.http
       .post<UserResponse>(
@@ -57,7 +75,10 @@ export class AuthService {
         catchError((err) => this.handleError(err))
       );
   }
-
+  /**
+   * @param {HttpErrorResponse} error Error a manejar
+   * @returns Regresa un observable del error
+   */
   private handleError(error: HttpErrorResponse): Observable<any> {
     let errorMessage = 'An error ocurred retrieving data';
 
@@ -74,15 +95,10 @@ export class AuthService {
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
   }
-  /*private handleError(err): Observable<any> {
-    let errorMessage = 'An error ocurred retrieving data';
 
-    if (err) {
-      errorMessage = `Error: code ${err.message}`;
-    }
-    return throwError(errorMessage);
-  }*/
-
+  /**
+   * Cierra la sesion, elimina datos almacenados del storage
+   */
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('nicename');
@@ -92,7 +108,9 @@ export class AuthService {
     this.userNiceName.next('');
     this.role.next(false);
   }
-
+  /**
+   * Comprueba si el token de usuario todavia es valido
+   */
   private checkToken(): void {
     const userToken = localStorage.getItem('token');
     const isExpire = helper.isTokenExpired(userToken);
@@ -107,7 +125,9 @@ export class AuthService {
       ? this.logout()
       : this.userNiceName.next(localStorage.getItem('role'));
   }
-
+  /**
+   * Almacena el informacion del usuario en el localstorage
+   */
   private saveToken(token: string, nicename: string, role: string): void {
     localStorage.setItem('token', token);
     localStorage.setItem('nicename', nicename);
