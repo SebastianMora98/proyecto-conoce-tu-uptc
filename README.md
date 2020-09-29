@@ -1,6 +1,10 @@
 # Generar documentacion
 
-npm run compodoc
+`npm run compodoc`
+
+# Ejecutar pruebas
+
+`ng test --include="**\login.component.spec.ts"`
 
 # CtuPrimeNG
 

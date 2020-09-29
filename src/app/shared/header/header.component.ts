@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '@services/auth/auth.service';
-import { SidebarService } from '@services/sidebar/sidebar.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 /**
@@ -18,11 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(
-    public authService: AuthService,
-    public router: Router,
-    public sideBarService: SidebarService
-  ) {
+  constructor(public authService: AuthService, public router: Router) {
     this.role = localStorage.getItem('role');
   }
 

@@ -21,19 +21,17 @@ import { Title } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class CreateService {
-  urlApi = 'http://localhost/ConoceTuUPTC/admin/wp-json/wp/v2/posts?_embed';
-
+  /**
+   * Constructor del servicio de creacion de noticias
+   * @param {HttpClient} http  Libreria que permite realizar peticiones al servidor
+   */
   constructor(private http: HttpClient) {}
-  getPosts(): Observable<PostInterface[]> {
-    return this.http.get<PostInterface[]>(this.urlApi);
-  }
 
-  getPostById(id: string): Observable<PostInterface> {
-    return this.http.get<any>(
-      `http://localhost/ConoceTuUPTC/admin/wp-json/wp/v2/posts/${id}/?_embed`
-    );
-  }
-
+  /**
+   *  @param {number} id  Se refiere al id de la imagen del post
+   *  @param {CreatePost} data  Se refiere a el objeto que almacena el contendio de la noticia a crear.
+   *  @returns Regresa un CreatePostResponse que contiene la informacion de la noticia creada
+   */
   createPost(
     id: number,
     data: CreatePost
@@ -71,6 +69,9 @@ export class CreateService {
       );
   }
 
+  /**
+   *  remueve strings vacios de un objeto
+   */
   removeEmptyStringsFrom(obj) {
     const clone = { ...obj };
     Object.entries(clone).forEach(
@@ -80,6 +81,10 @@ export class CreateService {
     return clone;
   }
 
+  /**
+   *  @param {CreatePost} data  se refiere a el objeto que almacena el contendio de la noticia a crear.
+   *  @returns regresa la informacion de la imagen creada
+   */
   subirImagen(data: CreatePost) {
     const { title, file } = data;
     const httpOptions = {
@@ -110,6 +115,11 @@ export class CreateService {
       );
   }
 
+  /**
+   *   Manejador de errores
+   *  @param {HttpErrorResponse} error
+   *  @returns regresa un observable del error
+   */
   private handleError(error: HttpErrorResponse): Observable<any> {
     let errorMessage = 'An error ocurred retrieving data';
 
@@ -125,26 +135,5 @@ export class CreateService {
     }
     // return an observable with a user-facing error message
     return throwError(error);
-  }
-
-  getToken(): string {
-    return localStorage.getItem('token');
-  }
-
-  /*getPostsPerPage(page: string): Observable<PostInterface[]> {
-    return this.http.get<PostInterface[]>(this.urlApi, {
-      params: {
-        per_page: '3',
-        page: page,
-      },
-    });
-  }*/
-  getPostsPerPage(per_page: string, page: string): Observable<PostInterface[]> {
-    return this.http.get<PostInterface[]>(this.urlApi, {
-      params: {
-        per_page: per_page,
-        page: page,
-      },
-    });
   }
 }

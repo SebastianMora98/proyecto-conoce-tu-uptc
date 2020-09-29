@@ -19,6 +19,9 @@ import { GalleriaModule } from 'primeng/galleria';
 import { FieldsetModule } from 'primeng/fieldset';
 import { MenuModule } from 'primeng/menu';
 
+/**
+ * Modulos de primeng
+ */
 const primengModules = [
   DropdownModule,
   InputTextModule,
@@ -34,7 +37,9 @@ const primengModules = [
   FieldsetModule,
   MenuModule,
 ];
-
+/**
+ * Modulo que contendra los modulos de los componentes de primeng
+ */
 @NgModule({
   declarations: [],
   imports: [CommonModule, primengModules],
