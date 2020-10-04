@@ -15,10 +15,12 @@ Angular: 10.0.14+
 
 ### Instalación y Configuración
 
-1. _Descargar el proyecto en la carpeta "C:\xampp\htdocs"_
-2. _Ejecutar XAMPP Control Panel y activar los servicios Apache y MySQL_
-3. _Abrir una terminal dentro del proyecto y ejecutar el comando para instalar las dependencias_
-
+1. _Ejecutar XAMPP Control Panel y activar los servicios Apache y MySQL_
+2. _Descargar el proyecto en la carpeta "C:\xampp\htdocs"_
+3. _Renombrar la capeta a `ConoceTuUPTC`_
+4. _Crear la base de datos con el nombre `conocetuuptcdb`_
+5. _Ejecutar el script `conocetuuptcdb.sql` en la base de datos
+6. _Abrir una terminal dentro del proyecto y ejecutar el comando para instalar las dependencias_
 ```
 npm install
 ```
